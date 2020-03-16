@@ -198,4 +198,18 @@ export default function Routes() {
 
 ```
 
+`src > App.js`:
+
+```
+import React from 'react';
+
+import Routes from './routes';
+
+function App() {
+  return <Routes />;
+}
+
+export default App;
+```
+
 Se formos agora no ***Browser*** e colocarmos `/repository` ou `/` vamos acessar as duas diferentes rotas.
