@@ -140,3 +140,62 @@ module.exports = {
 ```
 
 Agora nosso codigo esta todo padronizado.
+
+
+## Aula 03 - Roteamento no React
+
+Vamos agora fazer a navegaçāo entre paginas com os botões na nossa aplicaçāo, se voce lembrar no inicio do primeiro modulo do ***React*** ele tem um conceito que se chama ***SPA(Single page Application)*** que ele nao recarrega as paginas completamente, ele so exibe ou esconde componentes. E para isso vamos comecar a configurar para podemos comecar a usar essa feature.
+
+1. Rodamos `yarn add react-router-dom`
+2. Em `src` criamos um arquivo `routes.js`
+3. Dentro de `src` criamos uma pasta `pages` e dentro dela duas pastas `Main` e `Repository`,
+e dentro dessas duas pastas criamos um arquivo `index.js` dentro de cada uma.
+
+`pages > Main > index.js`:
+
+```
+import React from 'react';
+
+// import { Container } from './styles';
+
+export default function Main() {
+  return <h1>Main</h1>;
+}
+```
+
+`pages > Repository > index.js`:
+
+```
+import React from 'react';
+
+// import { Container } from './styles';
+
+export default function Repository() {
+  return <h1>Repository</h1>;
+}
+
+```
+
+`src > routes.js`:
+
+```
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import Main from './pages/Main';
+import Repository from './pages/Repository';
+
+export default function Routes() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Main} />
+        <Route path="/repository" component={Repository} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+```
+
+Se formos agora no ***Browser*** e colocarmos `/repository` ou `/` vamos acessar as duas diferentes rotas.
