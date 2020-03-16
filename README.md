@@ -16,7 +16,7 @@ Depois de configurado vamos no `package.json` que ja esta criado e retiramos as 
 
 Para rodar o servidor é bem simples, vamos no terminal e rodamos `yarn start` e ele iria abrir automaticament o `localhost:3000` com a logo do ***React*** rodando e funcionando, podendo ser alterado por nos em `src > App.js`.
 
-Agora vamos tirar alguns arquivos feitos por ele que nao iremos usar na nossa aplicaçāo, para comecar podemos tirar os arquivos: `src > App.css`, `src > App.test.css`, `src > index.css`, `src > logo.svg`, `src > serviceWorker.js`, `src > setupTests.js` / `logo192.png`, `logo512.png`, `robots.txt`.
+Agora vamos tirar alguns arquivos feitos por ele que nao iremos usar na nossa aplicaçāo, para comecar podemos tirar os arquivos: `src > App.css`, `src > App.test.css`, `src > index.css`, `src > logo.svg`, `src > serviceWorker.js`, `src > setupTests.js` / `public > logo192.png`, `public > logo512.png`, `public > robots.txt`.
 Se o seu nao tiver algum desses nao tem problema, delete oq você achar.
 
 Depois que você fizer isso vai dar um erro, entao voce acessa `src > index.js` e remove toda essa parte:
