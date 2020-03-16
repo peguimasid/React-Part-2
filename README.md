@@ -31,7 +31,7 @@ import * as serviceWorker from './serviceWorker';
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 ```
-6. Depois em `src > App.js` removemos essa parte: 
+6. Depois em `src > App.js` removemos essa parte:
 
 ```
 import logo from './logo.svg';
@@ -54,3 +54,89 @@ import './App.css';
 ```
 
 e adicionamos no lugar do `<header>` um `<h1>Hello World</h1>` e se deu tudo certo ele sera exibido.
+
+## Aula 02 - ESLint, Prettier, EditorConfig
+
+Nessa aula vamos instalar os padronizadores de codigo para deixar nosso codigo mais facil de entender e padronizado, com isso ele acaba ficando mais bonito tambem o que facilita no processo de novas features e debug.
+
+### EditorConfig
+
+Primeiro instalamos a extensāo ***EditorConfig for VS Code*** e depois na aba onde temos os arquivos e pastas clicamos com o botao direito(ou dois dedos) e clicamos em `Generate .editorconfig` e ele vai criar um arquivo na raiz com esse nome, e a configuracao dele ficará assim:
+
+```
+root = true
+
+[*]
+end_of_line = lf
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
+
+Com isso o codigo ja estara padronizado para outros Devs que entrarem no time.
+
+### ESLint
+
+1. `yarn add eslint -D`
+2. `yarn eslint --init`
+3. Configs: `To check syntax, find problems, and enforce code style ` > `JavaScript modules (import/export)` > `React` > `N` > `Browser` > `Use a popular style guide ` > `Airbnb: https://github.com/airbnb/javascript` > `JavaScript` > `Y`
+4. removemos o arquivo `package-lock.json` gerado
+5. rodar `yarn`
+
+## Prettier
+
+1. `yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint@10.0.3 -D`
+2. Vamos em `.eslint.js` e ele vai ficar assim:
+
+```
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'prettier',
+    'prettier/react'
+  ],
+  parser: 'babel-eslint',
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+    'prettier'
+  ],
+  rules: {
+    'prettier/prettier': 'error',
+    'react/jsx-filename-extension': [
+      'warn',
+      { extensions: ['.jsx', 'js'] }
+    ],
+    'import/prefer-default-export': 'off'
+  },
+};
+```
+3. Agora na raiz do projeto criamos um arquivo chamado `.prettierrc`
+
+`.prettierrc`:
+
+```
+{
+  "singleQuote": true,
+  "trailingComma": "es5"
+}
+```
+
+Agora nosso codigo esta todo padronizado.
