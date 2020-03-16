@@ -6,20 +6,20 @@ Como vimos na [parte-1](https://github.com/peguimasid/React-Introduction) de Rea
 
 Com o ***[yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#mac-stable)*** instalado, vá ao terminal e rode o seguinte comando:
 
-`yarn create react-app <nome do projeto>`
+1. `yarn create react-app <nome do projeto>`
 
 ***EX:*** `yarn create react-app projeto05`
 
 O processo talvez demore um pouco mas ao finalizar você vera uma pasta com o nome escolhido com todas as configurações base já prontas.
 
-Depois de configurado vamos no `package.json` que ja esta criado e retiramos as configracoes de ***ESLint*** pois vamos configura-lo do zero, so retirar la a sessao `eslintConfig`.
+2. Depois de configurado vamos no `package.json` que ja esta criado e retiramos as configracoes de ***ESLint*** pois vamos configura-lo do zero, so retirar la a sessao `eslintConfig`.
 
-Para rodar o servidor é bem simples, vamos no terminal e rodamos `yarn start` e ele iria abrir automaticament o `localhost:3000` com a logo do ***React*** rodando e funcionando, podendo ser alterado por nos em `src > App.js`.
+3. Para rodar o servidor é bem simples, vamos no terminal e rodamos `yarn start` e ele iria abrir automaticament o `localhost:3000` com a logo do ***React*** rodando e funcionando, podendo ser alterado por nos em `src > App.js`.
 
-Agora vamos tirar alguns arquivos feitos por ele que nao iremos usar na nossa aplicaçāo, para comecar podemos tirar os arquivos: `src > App.css`, `src > App.test.css`, `src > index.css`, `src > logo.svg`, `src > serviceWorker.js`, `src > setupTests.js` / `public > logo192.png`, `public > logo512.png`, `public > robots.txt`.
+4. Agora vamos tirar alguns arquivos feitos por ele que nao iremos usar na nossa aplicaçāo, para comecar podemos tirar os arquivos: `src > App.css`, `src > App.test.css`, `src > index.css`, `src > logo.svg`, `src > serviceWorker.js`, `src > setupTests.js` / `public > logo192.png`, `public > logo512.png`, `public > robots.txt`.
 Se o seu nao tiver algum desses nao tem problema, delete oq você achar.
 
-Depois que você fizer isso vai dar um erro, entao voce acessa `src > index.js` e remove toda essa parte:
+5. Depois que você fizer isso vai dar um erro, entao voce acessa `src > index.js` e remove toda essa parte:
 
 ```
 import './index.css';
@@ -31,7 +31,7 @@ import * as serviceWorker from './serviceWorker';
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 ```
-Depois em `src > App.js` removemos essa parte: 
+6. Depois em `src > App.js` removemos essa parte: 
 
 ```
 import logo from './logo.svg';
