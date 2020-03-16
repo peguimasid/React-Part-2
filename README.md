@@ -213,3 +213,46 @@ export default App;
 ```
 
 Se formos agora no ***Browser*** e colocarmos `/repository` ou `/` vamos acessar as duas diferentes rotas.
+
+## Aula 04 - Styled Components
+
+Vamos adicionar um biblioteca que trazer algumas vantagens na estilizaçāo dos nossos componentes.
+
+### Configurando:
+
+1. Rodar `yarn add styled-components`
+2. Instalar a extensāo ***vscode-styled-components***
+3. Dentro de `src > pages > Main` criamos um arquivo chamado `styles.js`
+
+`styles.js`:
+
+```
+import styled from 'styled-components';
+
+export const Title = styled.h1`
+  font-size: 24px;
+  color: #7159c1;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+```
+4. Agora no `index.js` da pasta `Main`:
+
+`import { Title } from './styles';`
+
+e onde era `<h1>` substituimos por `<Title>`:
+
+```
+export default function Main() {
+  return <Title>Main</Title>;
+}
+```
+
+e agora podemos ver nosso `<h1>` com a cor roxa.
+
+Podemos passar assim tambem:
+
+`color: ${props => (props.error ? 'red' : '#7159c1')};`
+
+O que significa que se la na ***Tag*** `<Title>` tiver uma propriedade chamada ***error***(`<Title error>`) ele vai mudar a cor pra vermelho caso contrario ficara roxo.
+
