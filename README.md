@@ -317,3 +317,104 @@ function App() {
 Agora se salvarmos e iniciarmos o servidor veremos nossos estilos globais aplicados em toda a aplicaçāo.
 
 Agora sabemos como adicionar estilos locais e globais à nossa aplicaçāo!
+
+## Aula 06 - Estilizando página Main
+
+Vamos estilizar a pagina Main, mas primeiro temos que entender o que vamos fazer. Nós iremos fazer uma ***API REST*** com a API do ***GitHub*** que vai listar Repositórios do ***GitHub*** e vamos salvar eles na nossa aplicaçāo. Formulario de adicionar repositorios e listar repositórios.
+
+### Configurando:
+
+1. Rodar `yarn add react-icons`
+2. ***`src > pages > Main > index.js`***:
+
+```
+import React from 'react';
+
+import { FaGithubAlt, FaPlus } from 'react-icons/fa';
+
+import { Container, Form, SubmitButton } from './styles';
+
+export default function Main() {
+  return (
+    <Container>
+      <h1>
+        <FaGithubAlt />
+        Repositórios
+      </h1>
+
+      <Form onSubmit={() => {}}>
+        <input type="text" placeholder="Adicionar Repositório" />
+
+        <SubmitButton disabled>
+          <FaPlus color="#FFF" size={14} />
+        </SubmitButton>
+      </Form>
+    </Container>
+  );
+}
+
+```
+
+3. ***`src > pages > Main > styles.js`***:
+
+```
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  max-width: 700px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 80px auto;
+
+  h1 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  svg {
+    margin: 0 10px;
+  }
+`;
+
+export const Form = styled.form`
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+
+  input {
+    flex: 1;
+    border: 1px solid #eee;
+    padding: 10px 15px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    font-size: 16px;
+  }
+`;
+
+export const SubmitButton = styled.button.attrs({
+  type: 'submit',
+})`
+  background: #202020;
+  border: 0;
+  padding: 0 7px;
+  margin-left: none;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  opacity: 0.8;
+  transition: 0.15s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.9;
+  }
+`;
+```
+
+E assim nossa aplicaçao estara estilizada utilizando os conceitos aprendidos nas aulas
