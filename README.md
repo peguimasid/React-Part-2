@@ -418,3 +418,186 @@ export const SubmitButton = styled.button.attrs({
 ```
 
 E assim nossa aplicaçao estara estilizada utilizando os conceitos aprendidos nas aulas
+
+
+## Aula 07 - Adicionando repositórios
+
+O que vamos fazer nessa aula é, quando usuario adicionar um repositorio no input ***EX: Facebook/react*** nossa aplicacao vai na API do ***GitHub***, busca as informações desse repositório e adiciona no estado(***`state`***) da nossa aplicacao, irei deixar o codigo todo abaixo e os numeros pra ver quais passos segui.
+
+1. Rodar `yarn add axios`(gerenciador de API'S)
+2. Dentro de `src` criamos uma pasta `services` e dentro dela um arquivo `api.js`.
+3. ***`api.js`***:
+
+```
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'https://api.github.com',
+});
+
+export default api;
+
+```
+4. Em ***`src > pages > Main > index.js`***:
+
+```
+import React, { Component } from 'react';
+import { FaGithub, FaPlus, FaSpinner } from 'react-icons/fa';
+
+import api from '../../services/api'; // 4
+
+import { Container, Form, SubmitButton } from './styles';
+
+export default class Main extends Component {
+  // eslint-disable-next-line react/state-in-constructor
+  state = {
+    newRepo: '',
+    repositories: [], // 5
+    loading: false, // 6
+  }; // 1
+
+  handleInputChange = e => {
+    this.setState({ newRepo: e.target.value });
+  }; // 3
+
+  handleSubmit = async e => {
+    e.preventDefault();
+
+    this.setState({ loading: true }); // 6.1
+
+    const { newRepo, repositories } = this.state;
+
+    const reponse = await api.get(`/repos/${newRepo}`); // 4.1
+
+    const data = {
+      name: reponse.data.full_name, // 4.2
+    };
+
+    this.setState({
+      repositories: [...repositories, data], // 5.1
+      newRepo: '',
+      loading: false, // 6.2
+    });
+  };
+
+  render() {
+    const { newRepo, loading } = this.state; // 2.1
+
+    return (
+      <Container>
+        <h1>
+          <FaGithub />
+          Repositórios
+        </h1>
+
+        <Form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Adicionar Repositório"
+            value={newRepo} // 2
+            onChange={this.handleInputChange} // 3.1
+          />
+
+          <SubmitButton
+            loading={loading} // 6.3 (6.4 `styles.js`)
+          >
+            {loading ? (
+              <FaSpinner color="#fff" size={14} />
+            ) : (
+              <FaPlus color="#FFF" size={14} />
+            )}
+          </SubmitButton>
+        </Form>
+      </Container>
+    );
+  }
+}
+```
+
+Config ***`src > pages > Main > styles.js`***:
+
+```
+import styled, { keyframes, css } from 'styled-components';
+
+export const Container = styled.div`
+  max-width: 700px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 80px auto;
+
+  h1 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  svg {
+    margin: 0 10px;
+  }
+`;
+
+export const Form = styled.form`
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+
+  input {
+    flex: 1;
+    border: 1px solid #eee;
+    padding: 10px 15px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    font-size: 16px;
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+`;
+
+export const SubmitButton = styled.button.attrs(props => ({
+  type: 'submit',
+  disabled: props.loading /* 6.5 */,
+}))`
+  background: #202020;
+  border: 1px solid #404040;
+  padding: 0 7px;
+  margin-left: none;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  opacity: 0.8;
+  transition: 0.1s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  /* 6.4 */
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+
+  ${props =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
+`;
+```
+
