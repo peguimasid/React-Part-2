@@ -293,7 +293,7 @@ export default createGlobalStyle`
 
 `import GlobalStyle from './styles/global';`
 
-E a a nossa `function app()` que estava assim:
+E a nossa `function app()` que estava assim:
 
 ```
 function App() {
