@@ -256,3 +256,64 @@ Podemos passar assim tambem:
 
 O que significa que se la na ***Tag*** `<Title>` tiver uma propriedade chamada ***error***(`<Title error>`) ele vai mudar a cor pra vermelho caso contrario ficara roxo.
 
+## Aula 05 - Estilos globais
+
+Estilos compartilhado entre todos os componentes da aplicacao, como por exemplo o ***Body***, ***font-family*** e etc.
+
+### Configurando:
+
+1. Dentro de `src` criamos uma pasta chamada `styles` e dentro dela um arquivo `global.js`
+
+***`global.js`***:
+
+```
+import { createGlobalStyle } from 'styled-components';
+
+export default createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    min-height: 100%;
+  }
+
+  body {
+    background: #7159c1;
+    -webkit-font-smoothing: antialiased !important;
+  }
+`;
+
+```
+
+2. Depois vamos em `src > App.js` e adicionamos la:
+
+`import GlobalStyle from './styles/global';`
+
+E a a nossa `function app()` que estava assim:
+
+```
+function App() {
+  return <Routes />;
+}
+```
+
+vai ficar assim:
+
+```
+function App() {
+  return (
+    <>
+      <Routes />
+      <GlobalStyle />
+    </>
+  );
+}
+```
+
+Agora se salvarmos e iniciarmos o servidor veremos nossos estilos globais aplicados em toda a aplicaçāo.
+
+Agora sabemos como adicionar estilos locais e globais à nossa aplicaçāo!
