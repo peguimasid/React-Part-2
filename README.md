@@ -659,3 +659,36 @@ export const List = styled.ul`
 `;
 ```
 Fazendo isso, ao adicionar um repositorio ele sera listado embaixo do input, mas o botao detalhes ainda nao estará funcionando.
+
+
+## Aula 09 - Utlizando LocalStorage
+
+O que vamos fazer agora é utlizar o banco de dados local do navegador.
+
+### Configurando
+
+La dentro do nosso `class components` em `src > pages > Main > index.js` embaixo do `state` colocamos dois novos metodos:
+
+***`index.js`***:
+
+```
+// careegar os dados do LocalStorage
+  componentDidMount() {
+    const repositories = localStorage.getItem('repositories');
+
+    if (repositories) {
+      this.setState({ repositories: JSON.parse(repositories) });
+    }
+  }
+
+  // Salvar os dados do LocalStorage
+  componentDidUpdate(_, prevState) {
+    const { repositories } = this.state;
+
+    if (prevState.repositories !== repositories) {
+      localStorage.setItem('repositories', JSON.stringify(repositories));
+    }
+  }
+```
+
+com isso os dados agora nao sao mais apagados toda vez que recarregamos a pagina ou fechamos a aplicaçāo.
