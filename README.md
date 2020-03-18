@@ -667,7 +667,7 @@ O que vamos fazer agora é utlizar o banco de dados local do navegador.
 
 ### Configurando
 
-La dentro do nosso `class components` em `src > pages > Main > index.js` embaixo do `state` colocamos dois novos metodos:
+La dentro do nosso `class components` em `src > pages > Main > index.js` embaixo do `state` colocamos dois novos metodos, `componentDidMount()` e `componentDidUpdate()`
 
 ***`index.js`***:
 
