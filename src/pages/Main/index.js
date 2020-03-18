@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FaGithub, FaPlus, FaSpinner } from 'react-icons/fa';
+import { FaGithub, FaPlus, FaSpinner, FaEllipsisH } from 'react-icons/fa';
 
 import api from '../../services/api';
 
@@ -68,7 +68,9 @@ export default class Main extends Component {
           {repositories.map(repository => (
             <li key={repository.name}>
               <span>{repository.name}</span>
-              <a href="#">Detalhes</a>
+              <a href="https://github.com/peguimasid">
+                <FaEllipsisH color="#303030" size={20} />
+              </a>
             </li>
           ))}
         </List>

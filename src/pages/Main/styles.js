@@ -82,7 +82,7 @@ export const SubmitButton = styled.button.attrs(props => ({
 `;
 
 export const List = styled.ul`
-  list-style-type: none;
+  list-style: none;
   max-width: 100%;
   background: #fff;
   border-radius: 4px;
@@ -91,12 +91,15 @@ export const List = styled.ul`
   li {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    color: #404040;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: space-between;
     font-size: 15px;
     padding: 12px;
     margin: 15px auto;
+    flex-direction: row;
+    align-items: center;
   }
 
   span {
@@ -104,8 +107,6 @@ export const List = styled.ul`
   }
 
   a {
-    text-decoration: none;
-    color: rgb(79, 96, 199);
-    opacity: 0.8;
+    opacity: 0.85;
   }
 `;

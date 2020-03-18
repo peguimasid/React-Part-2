@@ -601,3 +601,61 @@ export const SubmitButton = styled.button.attrs(props => ({
 `;
 ```
 
+## Aula 08 - Listando repositórios
+
+Vamos listar todo os repositórios que temos no nosso ***state***.
+
+### Configurando
+
+Em ***`src > pages > Main > index.js`***:
+
+`const { newRepo, ***repositories***, loading } = this.state;`
+
+```
+<List>
+   {repositories.map(repository => (
+     <li key={repository.name}>
+       <span>{repository.name}</span>
+       <a href="#">Detalhes</a>
+     </li>
+   ))}
+</List>
+```
+
+Se fizermos comente isso nao ira funcionar, para isso temos que importar ele de `styles.js`:
+
+`import { Container, Form, SubmitButton, ***List*** } from './styles';`
+
+E la em `styles.js` adicionamos um estilo como por exmplo:
+
+```
+export const List = styled.ul`
+  list-style: none;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 30px;
+
+  li {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    padding: 12px;
+    margin: 15px auto;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(79, 96, 199);
+    opacity: 0.8;
+  }
+`;
+```
+Fazendo isso, ao adicionar um repositorio ele sera listado embaixo do input, mas o botao detalhes ainda nao estará funcionando.
