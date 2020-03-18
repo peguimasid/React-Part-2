@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FaGithub, FaPlus, FaSpinner, FaEllipsisH } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -86,9 +87,9 @@ export default class Main extends Component {
           {repositories.map(repository => (
             <li key={repository.name}>
               <span>{repository.name}</span>
-              <a href={`https://github.com/${repository.name}`}>
+              <Link to={`repository/${encodeURIComponent(repository.name)}`}>
                 <FaEllipsisH color="#303030" size={20} />
-              </a>
+              </Link>
             </li>
           ))}
         </List>

@@ -692,3 +692,64 @@ La dentro do nosso `class components` em `src > pages > Main > index.js` embaixo
 ```
 
 com isso os dados agora nao sao mais apagados toda vez que recarregamos a pagina ou fechamos a aplicaçāo.
+
+## Aula 10 - Navegaçāo de rotas
+
+O que vamos fazer agora é, quando usuario clicar nos 3 pontinhos (detalhes) ele sera direcionado pra outra rota (`/repository`) que criamos no inicio do projeto.
+
+### Configurando
+
+Nos nao podemos simplesmente passar dentro de um componente uma tag `<a href="">` pois ela nao funciona dentro do componente, e para fazer esse papel nos temos o componente `<Link to=""/>` do `react-router-dom`, para usa-lo vamos em ***`src > pages > Main > index.js`***:
+
+```
+...
+import { Link } from 'react-router-dom';
+...
+```
+
+E dentro do nosso componente `<List />` onde esta o `<a>` colocamos assim:
+
+```
+<List>
+  {repositories.map(repository => (
+        <li key={repository.name}>
+         <span>{repository.name}</span>
+   *     <Link to={`repository/${encodeURIComponent(repository.name)}`}>
+         <FaEllipsisH color="#303030" size={20} />
+      </Link>
+   </li>
+  ))}
+</List>
+```
+
+passamos a tag `<Link />` assim:
+
+```
+<Link to={`repository/${encodeURIComponent(repository.name)}`}>
+```
+o `to` referencia para onde ela vai, e o `encodeURIComponent` faz um encode na `/` e transforma ela para `%2F` para nao chamar uma nova rota com a `/`
+
+Depois disso vamos em ***`routes.js`*** e nossa rota que estava assim:
+
+```
+<Route path="/repository" component={Repository} />
+```
+
+vai ficar assim:
+
+```
+<Route path="/repository/:repository" component={Repository} />
+```
+
+pois agora ela recebe um parametro sobre qual repositorio carregar.
+
+Depois vamos em ***`src > pages > Repository > index.js`*** e colocamos assim nossa `function Repository()`:
+
+```
+export default function Repository({ match }) {
+  return <h1>Repository: {decodeURIComponent(match.params.repository)}</h1>;
+}
+```
+E agora nossa rota `/repository` esta recebendo os repositorios que a gente clica como parametro.
+
+
