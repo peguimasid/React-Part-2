@@ -752,4 +752,51 @@ export default function Repository({ match }) {
 ```
 E agora nossa rota `/repository` esta recebendo os repositorios que a gente clica como parametro.
 
+## Aula 11 - Carregando dados da API
 
+Vamos mostrar os dados de determinado repositório na rota `/repository` como os issues e o repositorio.
+
+### Configurando
+
+Vamos em ***`src > pages > Repository > index.js`***:
+
+```
+import React, { Component } from 'react';
+import api from '../../services/api';
+
+export default class Repository extends Component {
+  state = {
+    repository: {},
+    issues: [],
+    loading: true,
+  };
+
+  async componentDidMount() {
+    const { match } = this.props;
+
+    const repoName = decodeURIComponent(match.params.repository);
+
+    const [repository, issues] = await Promise.all([
+      api.get(`/repos/${repoName}`),
+      api.get(`/repos/${repoName}/issues`, {
+        params: {
+          state: 'open',
+          per_page: 5,
+        },
+      }),
+    ]);
+    this.setState({
+      repository: repository.data,
+      issues: issues.data,
+      loading: false,
+    });
+  }
+
+  render() {
+    const { repository, issues, loading } = this.state;
+    return <h1>Repository</h1>;
+  }
+}
+```
+
+Nos pegamos os dados Issues e o Repository, eles ja estao sendo chamados mas nao estao sendo exibidos ainda, o que vamos fazer depois.
