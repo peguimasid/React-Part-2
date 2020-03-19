@@ -1,9 +1,21 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { FaChevronLeft } from 'react-icons/fa';
 import api from '../../services/api';
 
+import Container from '../../Components/Container';
+import { Loading, Owner, LinkStyle } from './styles';
+
 export default class Repository extends Component {
-  // eslint-disable-next-line react/state-in-constructor
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        repository: PropTypes.string,
+      }),
+    }).isRequired,
+  };
+
   state = {
     repository: {},
     issues: [],
@@ -33,6 +45,29 @@ export default class Repository extends Component {
 
   render() {
     const { repository, issues, loading } = this.state;
-    return <h1>Repository</h1>;
+
+    if (loading) {
+      return <Loading>Carregando</Loading>;
+    }
+
+    return (
+      <Container>
+        <Owner>
+          <LinkStyle>
+            <Link to="/">
+              <FaChevronLeft color="#555" size={25} />
+            </Link>
+          </LinkStyle>
+          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+          <h1>{repository.name}</h1>
+          <p>{repository.description}</p>
+          <a
+            href={`https://github.com/${repository.owner.login}/${repository.name}`}
+          >
+            Ver no GitHub
+          </a>
+        </Owner>
+      </Container>
+    );
   }
 }

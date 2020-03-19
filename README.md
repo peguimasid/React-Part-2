@@ -800,3 +800,142 @@ export default class Repository extends Component {
 ```
 
 Nos pegamos os dados Issues e o Repository, eles ja estao sendo chamados mas nao estao sendo exibidos ainda, o que vamos fazer depois.
+
+## Aula 12 - Definindo PropTypes
+
+Vamos adicionar as ***PropTypes*** que é um modo de o ***React*** avisar e validar se a prop que esta sendo passada é do tipo certo(function, string)
+
+### Configurando
+
+1. `yarn add prop-types`
+2. Em ***`src > pages > Repository > index.js`***:
+
+    `import PropTypes from 'prop-types';`
+
+3. Acima do metodo `state` podemos configurar assim:
+
+```
+static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        repository: PropTypes.string,
+      }),
+    }).isRequired,
+  };
+```
+
+com isso a gente garante que o tipo que o objeto `repository` vai receber vai ser sempre uma string.
+
+## Aula 13 - Exibindo repósitorio
+
+Vamos exibir as informações do repositório que a gente clicar.
+
+### Configurando:
+
+1. Criar dentro `src > pages > Repository` um arquivo chamado `styles.js`
+2. Dentro de `src > pages > Repository > index.js` no metodo `render()` criamos um novo componente `<Loading>`
+que vai ser exibido enquanto a pagina estiver carregando.
+3. importamos ele de `styles.js` : `import { Loading } from './styles';`
+4. Vamos em `styles.js` configurar ele:
+
+```
+import styled from 'styled-components';
+
+export const Loading = styled.div`
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+```
+Agora, nos vamos colocar o repositorio dentro de um componente `<Conteiner>` mas como ja tinhamos configurado esse componente la na rota `/Main` nos podemos reutilizar ele.
+
+5. Dentro da pasta `src` criar uma pagina `components`
+6. Dentro dela uma pasta `Container` com um arquivo `index.js`
+
+7. `Container > index.js`:
+
+```
+import styled from 'styled-components';
+
+const Container = styled.div`
+  max-width: 700px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 30px 30px 20px 30px;
+  margin: 80px auto;
+
+  h1 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  svg {
+    margin: 0 10px;
+  }
+`;
+
+export default Container;
+```
+8. Agora importamos esse componente em todas as rotas que formos utilizar:
+
+***EX:*** Na rota `/Main`:
+
+`import Container from '../../Components/Container';`
+
+9. Na rota `/Repository` importamos ele tambem:
+
+`import Container from '../../Components/Container';`
+
+E onde tinhamos um `<h1>` mostrando `Repsitory` substituimos pela tag `<Container>`
+
+10. adicionamos um Componente `<Owner>` dentro do container: que vai ficar assim:
+
+```
+<Container>
+  <Owner>
+      <img src={repository.owner.avatar_url} alt=       {repository.owner.login} />
+      <h1>{repository.name}</h1>
+      <p>{repository.description}</p>
+   </Owner>
+ </Container>
+```
+
+e la dentro de `styles.js` estilizamos ele assim:
+
+```
+export const Owner = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 120px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+
+  p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 400px;
+  }
+`;
+```
+
+ai quando clicarmos nos tres pontinhos (detalhes) nos veremos os dados daquele repositório.
+
