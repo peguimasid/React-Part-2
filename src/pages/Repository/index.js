@@ -5,7 +5,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 import api from '../../services/api';
 
 import Container from '../../Components/Container';
-import { Loading, Owner, LinkStyle } from './styles';
+import { Loading, Owner, LinkStyle, IssueList } from './styles';
 
 export default class Repository extends Component {
   static propTypes = {
@@ -61,12 +61,25 @@ export default class Repository extends Component {
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <h1>{repository.name}</h1>
           <p>{repository.description}</p>
-          <a
-            href={`https://github.com/${repository.owner.login}/${repository.name}`}
-          >
-            Ver no GitHub
-          </a>
+          <a href={`${repository.html_url}`}>Ver no GitHub</a>
         </Owner>
+
+        <IssueList>
+          {issues.map(issue => (
+            <li key={String(issue.id)}>
+              <img src={issue.user.avatar_url} alt={issue.user.login} />
+              <div>
+                <strong>
+                  <a href={issue.html_url}>{issue.title}</a>
+                  {issue.labels.map(label => (
+                    <span key={String(label.id)}>{label.name}</span>
+                  ))}
+                </strong>
+                <p>{issue.user.login}</p>
+              </div>
+            </li>
+          ))}
+        </IssueList>
       </Container>
     );
   }

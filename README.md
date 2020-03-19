@@ -939,3 +939,101 @@ export const Owner = styled.header`
 
 ai quando clicarmos nos tres pontinhos (detalhes) nos veremos os dados daquele repositório.
 
+## Aula 14 - Exibindo issues
+
+Agora la na rota `/repository` nos vamos listar todos os issues de determinado repositorio.
+
+1. Embaixo do componente `<Owner>` nos vamos colocar um novo chamado `<IssueList>` que vai ficar assim:
+
+```
+<IssueList>
+  {issues.map(issue => (
+    <li key={String(issue.id)}>
+        <img src={issue.user.avatar_url} alt={issue.user.login} />
+        <div>
+             <strong>
+                  <a href={issue.html_url}>{issue.title}</a>
+                  {issue.labels.map(label => (
+                   <span key={String(label.id)}>{label.name}</span>
+                ))}
+             </strong>
+           <p>{issue.user.login}</p>
+        </div>
+    </li>
+  ))}
+</IssueList>
+```
+
+2. Depois vamos la em cima e importamos a `<IssueList>`:
+
+`import { Loading, Owner, LinkStyle, IssueList } from './styles';`
+
+3. Vamos em `style.js` e colocamos assim:
+
+```
+export const IssueList = styled.ul`
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  list-style: none;
+  }
+
+  li {
+    display: flex;
+    padding: 15px 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+
+  & + li {
+    margin-top: 10px
+  }
+
+  img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border: 2px solid #eee;
+  }
+
+  div {
+    flex: 1;
+    margin-left: 15px;
+
+    strong {
+      font-size: 16px;
+
+      a {
+        text-decoration: none;
+        color: #555;
+        transition: 0.1s;
+
+      &:hover {
+        color: #222;
+      }
+     }
+
+     span {
+      color: #666;
+      background: #eee;
+      font-size: 12px;
+      margin-left: 10px;
+      padding: 3px 4px;
+      border-radius: 4px;
+     }
+    }
+
+    p {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #999;
+    }
+  }
+`;
+
+```
+
+com isso nos teremos nossos issue sendo exibidos na rota.
+
+
+### FIM

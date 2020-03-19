@@ -54,3 +54,63 @@ export const LinkStyle = styled.a`
   top: 25px;
   left: 16px;
 `;
+
+export const IssueList = styled.ul`
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  list-style: none;
+  }
+
+  li {
+    display: flex;
+    padding: 15px 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+
+  & + li {
+    margin-top: 10px
+  }
+
+  img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    border: 2px solid #eee;
+  }
+
+  div {
+    flex: 1;
+    margin-left: 15px;
+
+    strong {
+      font-size: 16px;
+
+      a {
+        text-decoration: none;
+        color: #555;
+        transition: 0.1s;
+
+      &:hover {
+        color: #222;
+      }
+     }
+
+     span {
+      color: #666;
+      background: #eee;
+      font-size: 12px;
+      margin-left: 10px;
+      padding: 3px 4px;
+      border-radius: 4px;
+     }
+    }
+
+    p {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #999;
+    }
+  }
+`;
