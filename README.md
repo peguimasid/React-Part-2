@@ -11,7 +11,7 @@
 <br>
 
 <p align="center">
-  <img alt="Frontend" src="./assets/image.png" width="60%">
+  <img alt="Frontend" src="./public/assets/image.png" width="60%">
 </p>
 
 ### Rodando na sua maquina:
