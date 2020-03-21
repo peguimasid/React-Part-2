@@ -11,13 +11,13 @@
 <br>
 
 <p align="center">
-  <img alt="Frontend" src="./public/assets/image.png" width="80%">
+  <img alt="Frontend" src="./public/assets/image.png" width="100%">
 </p>
 
 ### Rodando na sua maquina:
 
 1. Baixe o arquivo ***.ZIP***
-2. `cd react-02-master`
+2. `cd React-Part-2-master`
 3. `yarn` para instalar as dependencias
 4. `yarn start` para iniciar o servidor
 5. `http://localhost:3000`: porta que estara rodando o projeto
