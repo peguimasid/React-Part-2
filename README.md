@@ -17,10 +17,10 @@
 ### Rodando na sua maquina:
 
 1. Baixe o arquivo ***.ZIP***
-2. cd Facebook-React
+2. `cd react-02-master`
 3. `yarn` para instalar as dependencias
-4. `yarn dev` para iniciar o servidor
-5. `http://localhost:8080`: porta que estara rodando o projeto
+4. `yarn start` para iniciar o servidor
+5. `http://localhost:3000`: porta que estara rodando o projeto
 
 ## Aula 01 - Criando projeto do zero
 
