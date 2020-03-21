@@ -9,6 +9,10 @@ const Container = styled.div`
   padding: 30px 30px 20px 30px;
   margin: 80px auto;
 
+  @media (max-width: 600px) {
+    max-width: 500px;
+  }
+
   h1 {
     font-size: 20px;
     display: flex;

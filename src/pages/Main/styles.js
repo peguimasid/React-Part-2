@@ -7,7 +7,7 @@ export const Form = styled.form`
 
   input {
     flex: 1;
-    border: 1px solid #eee;
+    border: 1px solid ${props => (props.error ? '#ff4040' : '#eee')};
     padding: 10px 15px;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -29,7 +29,7 @@ export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
   disabled: props.loading /* 6.5 */,
 }))`
-  background: #202020;
+  background: ${props => (props.error ? '#ff0000' : '#202020')};
   border: 1px solid #404040;
   padding: 0 7px;
   margin-left: none;
