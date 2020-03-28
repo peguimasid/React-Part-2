@@ -9,7 +9,7 @@
 <br>
 
 <p align="center">
-  <img alt="Frontend" src="./public/assets/image.png" width="100%">
+  <img alt="Frontend" src="./public/assets/github-api.png" width="100%">
 </p>
 
 
