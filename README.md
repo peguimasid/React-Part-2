@@ -110,7 +110,7 @@ Com isso o codigo ja estara padronizado para outros Devs que entrarem no time.
 
 ## Prettier
 
-1. `yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint@10.0.3 -D`
+1. `yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D`
 2. Vamos em `.eslint.js` e ele vai ficar assim:
 
 ```
