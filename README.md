@@ -219,6 +219,7 @@ export default function Routes() {
   );
 }
 
+// Quando for usar Redux tira o <BrowserRouter> porque na hora de fazer history.push ele mantem a pagina.
 ```
 
 `src > App.js`:
